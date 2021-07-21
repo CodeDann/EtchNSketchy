@@ -14,31 +14,32 @@ fpsClock = pg.time.Clock()
 width, height = 949, 774
 screen = pg.display.set_mode((width, height))
 screen.fill((255, 255, 255))
-bg = pg.image.load('etch_n_sketchy.png')
-wm = pg.image.load('welcome_message.png')
+bg = pg.image.load('images/etch_n_sketchy.png')
+wm = pg.image.load('images/welcome_message.png')
 
-def updatePos( current_position, indicator):
-    fullMove = 50
-    halfMove = 25
-    if indicator == 1: #UP
+
+def updatePos(current_position, indicator):
+    fullMove = 20
+    halfMove = 10
+    if indicator == 1:  # UP
         return [current_position[0], current_position[1] - fullMove]
-    elif indicator == 2: #Right
+    elif indicator == 2:  # Right
         return [current_position[0] + fullMove, current_position[1]]
-    elif indicator == 3: #Left
+    elif indicator == 3:  # Left
         return [current_position[0] - fullMove, current_position[1]]
-    elif indicator == 4: #Down
+    elif indicator == 4:  # Down
         return [current_position[0], current_position[1] + fullMove]
-    elif indicator == 5: #UpHalf
+    elif indicator == 5:  # UpHalf
         return [current_position[0], current_position[1] - halfMove]
-    elif indicator == 6: #DownHalf
+    elif indicator == 6:  # DownHalf
         return [current_position[0], current_position[1] + halfMove]
-    elif indicator == 7: #RightHalf
+    elif indicator == 7:  # RightHalf
         return [current_position[0] + halfMove, current_position[1]]
-    elif indicator == 8: #LeftHalf
+    elif indicator == 8:  # LeftHalf
         return [current_position[0] - halfMove, current_position[1]]
 
 
-screen.blit(wm, (100,100))
+screen.blit(wm, (100, 100))
 while True:
     screen.blit(bg, (0, 0))
     for event in pg.event.get():
@@ -64,19 +65,19 @@ while True:
             currPos = newPos
         elif pressed_keys[K_UP]:
             newPos = updatePos(currPos, 1)
-            pg.draw.line(screen, currColor,  currPos, newPos)
+            pg.draw.line(screen, currColor, currPos, newPos)
             currPos = newPos
         elif pressed_keys[K_DOWN]:
             newPos = updatePos(currPos, 4)
-            pg.draw.line(screen, currColor,  currPos, newPos)
+            pg.draw.line(screen, currColor, currPos, newPos)
             currPos = newPos
         elif pressed_keys[K_LEFT]:
             newPos = updatePos(currPos, 3)
-            pg.draw.line(screen, currColor,  currPos, newPos)
+            pg.draw.line(screen, currColor, currPos, newPos)
             currPos = newPos
         elif pressed_keys[K_RIGHT]:
             newPos = updatePos(currPos, 2)
-            pg.draw.line(screen, currColor,  currPos, newPos)
+            pg.draw.line(screen, currColor, currPos, newPos)
             currPos = newPos
         elif pressed_keys[K_1]:
             currColor = 'orange'
@@ -89,11 +90,5 @@ while True:
         elif pressed_keys[K_5]:
             screen.fill((255, 255, 255))
 
-
-
     pg.display.flip()
     fpsClock.tick(fps)
-
-
-
-
